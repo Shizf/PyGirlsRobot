@@ -9,9 +9,9 @@ from bs4 import BeautifulSoup
 
 def main():
     originalUrl = 'http://jandan.net/ooxx/page-'
-    rest = req(originalUrl, '1')
-    print(rest)
-    downloadImg(rest)
+    for i in range(100):
+        rest = req(originalUrl, str(i))
+        downloadImg(rest,str(i))
 
 
 def req(url, pageIndex):
@@ -28,7 +28,7 @@ def req(url, pageIndex):
     return ass
 
 
-def downloadImg(urls):
+def downloadImg(urls,pageIndex):
     index = 0
     for url in urls:
         print("下载:", url)
@@ -41,7 +41,7 @@ def downloadImg(urls):
         except Exception as e:
             print('未下载成功：', url)
 
-        filename = os.path.join('imgs', str(index) + '.jpg')
+        filename = os.path.join('imgs', str(pageIndex)+'-'+str(index) + '.jpg')
         with open(filename, 'wb') as f:
             f.write(res.content)
             print('下载完成\n')
