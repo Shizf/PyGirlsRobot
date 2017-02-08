@@ -5,13 +5,17 @@ import os
 import requests
 from bs4 import BeautifulSoup
 
+import mongoConfig
+import model
+
 
 
 def main():
     originalUrl = 'http://jandan.net/ooxx/page-'
-    for i in range(100):
-        rest = req(originalUrl, str(i))
-        downloadImg(rest,str(i))
+    for i in range(1000):
+        j = i+501
+        rest = req(originalUrl, str(j))
+        downloadImg(rest,str(j))
 
 
 def req(url, pageIndex):
